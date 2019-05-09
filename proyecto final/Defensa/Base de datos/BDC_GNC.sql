@@ -1,0 +1,2009 @@
+--------------------------------------------------------
+-- Archivo creado  - jueves-mayo-09-2019   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for DB Link DBL_COGNC
+--------------------------------------------------------
+
+  CREATE DATABASE LINK "DBL_COGNC"
+   CONNECT TO "TAMBO" IDENTIFIED BY VALUES '05BAC15BF5DA7314978067FCC609001DFD'
+   USING 'localhost:1521/xe';
+--------------------------------------------------------
+--  DDL for Sequence SEQ_ENFERMEDAD
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "CO_GNC"."SEQ_ENFERMEDAD"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_TERNERA
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "CO_GNC"."SEQ_TERNERA"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table D_ENFERMEDAD
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."D_ENFERMEDAD" 
+   (	"ENFERMEDAD" VARCHAR2(40 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table DT_ENFERMEDAD
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."DT_ENFERMEDAD" 
+   (	"SK_ENFERMEDAD" NUMBER(*,0), 
+	"PK_ENFERMEDAD" VARCHAR2(40 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table D_TERNERA
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."D_TERNERA" 
+   (	"TERNERA" NUMBER(11,0), 
+	"DESCRIPCION" VARCHAR2(30 BYTE) DEFAULT 'Nro de carabana'
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table DT_TERNERA
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."DT_TERNERA" 
+   (	"SK_TERNERA" NUMBER(*,0), 
+	"PK_TERNERA" VARCHAR2(40 BYTE), 
+	"DES_TER" VARCHAR2(30 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table DT_TIEMPO
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."DT_TIEMPO" 
+   (	"SK_TIEMPO" NUMBER(*,0), 
+	"FECHA" DATE, 
+	"ANIO" NUMBER
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table H_TERN_ENF
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."H_TERN_ENF" 
+   (	"TERNERA" NUMBER(11,0), 
+	"ENFERMEDAD" VARCHAR2(30 BYTE), 
+	"FECH_DESDE" DATE, 
+	"FECH_HASTA" DATE
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table HT_TERN_ENF
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."HT_TERN_ENF" 
+   (	"SK_ENFERMEDAD" NUMBER(*,0), 
+	"SK_TERNERA" NUMBER(*,0), 
+	"SK_TIEMPO" NUMBER(*,0), 
+	"CANTIDAD" NUMBER(*,0), 
+	"ALTA_USUARIO" VARCHAR2(50 BYTE), 
+	"ALTER_FECHA" DATE
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table ODS_D_ENFERMEDAD
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."ODS_D_ENFERMEDAD" 
+   (	"ENFERMEDAD_PK" VARCHAR2(40 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ODS_D_TERNERA
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."ODS_D_TERNERA" 
+   (	"TERNERA_PK" VARCHAR2(40 BYTE), 
+	"DESC_TERNERA" VARCHAR2(30 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table ODS_H_TERN_ENF
+--------------------------------------------------------
+
+  CREATE TABLE "CO_GNC"."ODS_H_TERN_ENF" 
+   (	"TERNERA" NUMBER(11,0), 
+	"ENFERMEDAD" VARCHAR2(40 BYTE), 
+	"FECHA_DESDE" NUMBER(*,0), 
+	"FECHA_HASTA" NUMBER(*,0)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for View V_CONTROL_D_ENFERMEDAD
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE VIEW "CO_GNC"."V_CONTROL_D_ENFERMEDAD" ("ENFERMEDAD") AS 
+  SELECT DISTINCT ENFERMEDAD
+FROM H_TERN_ENF
+WHERE
+NOT EXISTS
+ (
+ SELECT  1
+ FROM    D_ENFERMEDAD
+ 	WHERE   UPPER (H_TERN_ENF.ENFERMEDAD)=UPPER(D_ENFERMEDAD.ENFERMEDAD)
+ );
+--------------------------------------------------------
+--  DDL for View V_CONTROL_D_TERNERA
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE VIEW "CO_GNC"."V_CONTROL_D_TERNERA" ("TERNERA") AS 
+  SELECT DISTINCT TERNERA
+FROM H_TERN_ENF
+WHERE
+EXISTS
+ (
+ SELECT  1
+ FROM    D_TERNERA
+ 	WHERE   UPPER (H_TERN_ENF.TERNERA)=UPPER(D_TERNERA.TERNERA)
+ );
+REM INSERTING into CO_GNC.D_ENFERMEDAD
+SET DEFINE OFF;
+Insert into CO_GNC.D_ENFERMEDAD (ENFERMEDAD) values ('Diarrea');
+Insert into CO_GNC.D_ENFERMEDAD (ENFERMEDAD) values ('Neumonia');
+REM INSERTING into CO_GNC.DT_ENFERMEDAD
+SET DEFINE OFF;
+Insert into CO_GNC.DT_ENFERMEDAD (SK_ENFERMEDAD,PK_ENFERMEDAD) values ('1','DIARREA');
+Insert into CO_GNC.DT_ENFERMEDAD (SK_ENFERMEDAD,PK_ENFERMEDAD) values ('2','NEUMONIA');
+REM INSERTING into CO_GNC.D_TERNERA
+SET DEFINE OFF;
+Insert into CO_GNC.D_TERNERA (TERNERA,DESCRIPCION) values ('2000000006','Nro de carabana');
+Insert into CO_GNC.D_TERNERA (TERNERA,DESCRIPCION) values ('1000000001','Nro de carabana');
+REM INSERTING into CO_GNC.DT_TERNERA
+SET DEFINE OFF;
+Insert into CO_GNC.DT_TERNERA (SK_TERNERA,PK_TERNERA,DES_TER) values ('1','2000000006','Nro de carabana');
+Insert into CO_GNC.DT_TERNERA (SK_TERNERA,PK_TERNERA,DES_TER) values ('2','1000000001','Nro de carabana');
+REM INSERTING into CO_GNC.DT_TIEMPO
+SET DEFINE OFF;
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160101',to_date('01/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160102',to_date('02/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160103',to_date('03/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160104',to_date('04/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160105',to_date('05/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160106',to_date('06/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160107',to_date('07/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160108',to_date('08/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160109',to_date('09/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160110',to_date('10/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160111',to_date('11/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160112',to_date('12/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160113',to_date('13/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160114',to_date('14/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160115',to_date('15/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160116',to_date('16/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160117',to_date('17/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160118',to_date('18/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160119',to_date('19/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160120',to_date('20/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160121',to_date('21/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160122',to_date('22/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160123',to_date('23/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160124',to_date('24/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160125',to_date('25/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160126',to_date('26/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160127',to_date('27/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160128',to_date('28/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160129',to_date('29/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160130',to_date('30/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160131',to_date('31/01/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160201',to_date('01/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160202',to_date('02/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160203',to_date('03/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160204',to_date('04/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160205',to_date('05/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160206',to_date('06/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160207',to_date('07/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160208',to_date('08/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160209',to_date('09/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160210',to_date('10/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160211',to_date('11/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160212',to_date('12/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160213',to_date('13/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160214',to_date('14/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160215',to_date('15/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160216',to_date('16/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160217',to_date('17/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160218',to_date('18/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160219',to_date('19/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160220',to_date('20/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160221',to_date('21/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160222',to_date('22/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160223',to_date('23/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160224',to_date('24/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160225',to_date('25/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160226',to_date('26/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160227',to_date('27/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160228',to_date('28/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160229',to_date('29/02/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160301',to_date('01/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160302',to_date('02/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160303',to_date('03/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160304',to_date('04/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160305',to_date('05/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160306',to_date('06/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160307',to_date('07/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160308',to_date('08/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160309',to_date('09/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160310',to_date('10/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160311',to_date('11/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160312',to_date('12/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160313',to_date('13/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160314',to_date('14/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160315',to_date('15/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160316',to_date('16/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160317',to_date('17/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160318',to_date('18/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160319',to_date('19/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160320',to_date('20/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160321',to_date('21/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160322',to_date('22/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160323',to_date('23/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160324',to_date('24/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160325',to_date('25/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160326',to_date('26/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160327',to_date('27/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160328',to_date('28/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160329',to_date('29/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160330',to_date('30/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160331',to_date('31/03/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160401',to_date('01/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160402',to_date('02/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160403',to_date('03/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160404',to_date('04/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160405',to_date('05/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160406',to_date('06/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160407',to_date('07/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160408',to_date('08/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160409',to_date('09/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160410',to_date('10/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160411',to_date('11/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160412',to_date('12/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160413',to_date('13/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160414',to_date('14/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160415',to_date('15/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160416',to_date('16/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160417',to_date('17/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160418',to_date('18/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160419',to_date('19/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160420',to_date('20/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160421',to_date('21/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160422',to_date('22/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160423',to_date('23/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160424',to_date('24/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160425',to_date('25/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160426',to_date('26/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160427',to_date('27/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160428',to_date('28/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160429',to_date('29/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160430',to_date('30/04/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160501',to_date('01/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160502',to_date('02/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160503',to_date('03/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160504',to_date('04/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160505',to_date('05/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160506',to_date('06/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160507',to_date('07/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160508',to_date('08/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160509',to_date('09/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160510',to_date('10/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160511',to_date('11/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160512',to_date('12/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160513',to_date('13/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160514',to_date('14/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160515',to_date('15/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160516',to_date('16/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160517',to_date('17/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160518',to_date('18/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160519',to_date('19/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160520',to_date('20/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160521',to_date('21/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160522',to_date('22/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160523',to_date('23/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160524',to_date('24/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160525',to_date('25/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160526',to_date('26/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160527',to_date('27/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160528',to_date('28/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160529',to_date('29/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160530',to_date('30/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160531',to_date('31/05/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160601',to_date('01/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160602',to_date('02/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160603',to_date('03/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160604',to_date('04/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160605',to_date('05/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160606',to_date('06/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160607',to_date('07/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160608',to_date('08/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160609',to_date('09/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160610',to_date('10/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160611',to_date('11/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160612',to_date('12/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160613',to_date('13/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160614',to_date('14/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160615',to_date('15/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160616',to_date('16/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160617',to_date('17/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160618',to_date('18/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160619',to_date('19/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160620',to_date('20/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160621',to_date('21/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160622',to_date('22/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160623',to_date('23/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160624',to_date('24/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160625',to_date('25/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160626',to_date('26/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160627',to_date('27/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160628',to_date('28/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160629',to_date('29/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160630',to_date('30/06/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160701',to_date('01/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160702',to_date('02/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160703',to_date('03/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160704',to_date('04/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160705',to_date('05/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160706',to_date('06/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160707',to_date('07/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160708',to_date('08/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160709',to_date('09/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160710',to_date('10/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160711',to_date('11/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160712',to_date('12/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160713',to_date('13/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160714',to_date('14/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160715',to_date('15/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160716',to_date('16/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160717',to_date('17/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160718',to_date('18/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160719',to_date('19/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160720',to_date('20/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160721',to_date('21/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160722',to_date('22/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160723',to_date('23/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160724',to_date('24/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160725',to_date('25/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160726',to_date('26/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160727',to_date('27/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160728',to_date('28/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160729',to_date('29/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160730',to_date('30/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160731',to_date('31/07/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160801',to_date('01/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160802',to_date('02/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160803',to_date('03/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160804',to_date('04/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160805',to_date('05/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160806',to_date('06/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160807',to_date('07/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160808',to_date('08/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160809',to_date('09/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160810',to_date('10/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160811',to_date('11/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160812',to_date('12/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160813',to_date('13/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160814',to_date('14/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160815',to_date('15/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160816',to_date('16/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160817',to_date('17/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160818',to_date('18/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160819',to_date('19/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160820',to_date('20/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160821',to_date('21/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160822',to_date('22/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160823',to_date('23/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160824',to_date('24/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160825',to_date('25/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160826',to_date('26/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160827',to_date('27/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160828',to_date('28/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160829',to_date('29/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160830',to_date('30/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160831',to_date('31/08/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160901',to_date('01/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160902',to_date('02/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160903',to_date('03/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160904',to_date('04/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160905',to_date('05/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160906',to_date('06/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160907',to_date('07/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160908',to_date('08/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160909',to_date('09/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160910',to_date('10/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160911',to_date('11/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160912',to_date('12/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160913',to_date('13/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160914',to_date('14/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160915',to_date('15/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160916',to_date('16/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160917',to_date('17/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160918',to_date('18/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160919',to_date('19/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160920',to_date('20/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160921',to_date('21/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160922',to_date('22/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160923',to_date('23/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160924',to_date('24/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160925',to_date('25/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160926',to_date('26/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160927',to_date('27/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160928',to_date('28/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160929',to_date('29/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20160930',to_date('30/09/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161001',to_date('01/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161002',to_date('02/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161003',to_date('03/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161004',to_date('04/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161005',to_date('05/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161006',to_date('06/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161007',to_date('07/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161008',to_date('08/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161009',to_date('09/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161010',to_date('10/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161011',to_date('11/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161012',to_date('12/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161013',to_date('13/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161014',to_date('14/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161015',to_date('15/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161016',to_date('16/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161017',to_date('17/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161018',to_date('18/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161019',to_date('19/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161020',to_date('20/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161021',to_date('21/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161022',to_date('22/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161023',to_date('23/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161024',to_date('24/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161025',to_date('25/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161026',to_date('26/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161027',to_date('27/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161028',to_date('28/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161029',to_date('29/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161030',to_date('30/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161031',to_date('31/10/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161101',to_date('01/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161102',to_date('02/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161103',to_date('03/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161104',to_date('04/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161105',to_date('05/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161106',to_date('06/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161107',to_date('07/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161108',to_date('08/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161109',to_date('09/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161110',to_date('10/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161111',to_date('11/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161112',to_date('12/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161113',to_date('13/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161114',to_date('14/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161115',to_date('15/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161116',to_date('16/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161117',to_date('17/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161118',to_date('18/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161119',to_date('19/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161120',to_date('20/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161121',to_date('21/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161122',to_date('22/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161123',to_date('23/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161124',to_date('24/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161125',to_date('25/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161126',to_date('26/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161127',to_date('27/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161128',to_date('28/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161129',to_date('29/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161130',to_date('30/11/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161201',to_date('01/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161202',to_date('02/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161203',to_date('03/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161204',to_date('04/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161205',to_date('05/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161206',to_date('06/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161207',to_date('07/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161208',to_date('08/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161209',to_date('09/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161210',to_date('10/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161211',to_date('11/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161212',to_date('12/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161213',to_date('13/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161214',to_date('14/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161215',to_date('15/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161216',to_date('16/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161217',to_date('17/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161218',to_date('18/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161219',to_date('19/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161220',to_date('20/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161221',to_date('21/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161222',to_date('22/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161223',to_date('23/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161224',to_date('24/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161225',to_date('25/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161226',to_date('26/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161227',to_date('27/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161228',to_date('28/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161229',to_date('29/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161230',to_date('30/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20161231',to_date('31/12/16','DD/MM/RR'),'2016');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170101',to_date('01/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170102',to_date('02/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170103',to_date('03/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170104',to_date('04/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170105',to_date('05/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170106',to_date('06/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170107',to_date('07/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170108',to_date('08/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170109',to_date('09/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170110',to_date('10/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170111',to_date('11/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170112',to_date('12/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170113',to_date('13/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170114',to_date('14/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170115',to_date('15/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170116',to_date('16/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170117',to_date('17/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170118',to_date('18/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170119',to_date('19/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170120',to_date('20/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170121',to_date('21/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170122',to_date('22/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170123',to_date('23/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170124',to_date('24/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170125',to_date('25/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170126',to_date('26/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170127',to_date('27/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170128',to_date('28/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170129',to_date('29/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170130',to_date('30/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170131',to_date('31/01/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170201',to_date('01/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170202',to_date('02/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170203',to_date('03/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170204',to_date('04/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170205',to_date('05/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170206',to_date('06/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170207',to_date('07/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170208',to_date('08/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170209',to_date('09/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170210',to_date('10/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170211',to_date('11/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170212',to_date('12/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170213',to_date('13/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170214',to_date('14/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170215',to_date('15/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170216',to_date('16/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170217',to_date('17/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170218',to_date('18/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170219',to_date('19/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170220',to_date('20/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170221',to_date('21/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170222',to_date('22/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170223',to_date('23/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170224',to_date('24/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170225',to_date('25/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170226',to_date('26/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170227',to_date('27/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170228',to_date('28/02/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170301',to_date('01/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170302',to_date('02/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170303',to_date('03/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170304',to_date('04/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170305',to_date('05/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170306',to_date('06/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170307',to_date('07/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170308',to_date('08/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170309',to_date('09/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170310',to_date('10/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170311',to_date('11/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170312',to_date('12/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170313',to_date('13/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170314',to_date('14/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170315',to_date('15/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170316',to_date('16/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170317',to_date('17/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170318',to_date('18/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170319',to_date('19/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170320',to_date('20/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170321',to_date('21/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170322',to_date('22/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170323',to_date('23/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170324',to_date('24/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170325',to_date('25/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170326',to_date('26/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170327',to_date('27/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170328',to_date('28/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170329',to_date('29/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170330',to_date('30/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170331',to_date('31/03/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170401',to_date('01/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170402',to_date('02/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170403',to_date('03/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170404',to_date('04/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170405',to_date('05/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170406',to_date('06/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170407',to_date('07/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170408',to_date('08/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170409',to_date('09/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170410',to_date('10/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170411',to_date('11/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170412',to_date('12/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170413',to_date('13/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170414',to_date('14/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170415',to_date('15/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170416',to_date('16/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170417',to_date('17/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170418',to_date('18/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170419',to_date('19/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170420',to_date('20/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170421',to_date('21/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170422',to_date('22/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170423',to_date('23/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170424',to_date('24/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170425',to_date('25/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170426',to_date('26/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170427',to_date('27/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170428',to_date('28/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170429',to_date('29/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170430',to_date('30/04/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170501',to_date('01/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170502',to_date('02/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170503',to_date('03/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170504',to_date('04/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170505',to_date('05/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170506',to_date('06/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170507',to_date('07/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170508',to_date('08/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170509',to_date('09/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170510',to_date('10/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170511',to_date('11/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170512',to_date('12/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170513',to_date('13/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170514',to_date('14/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170515',to_date('15/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170516',to_date('16/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170517',to_date('17/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170518',to_date('18/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170519',to_date('19/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170520',to_date('20/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170521',to_date('21/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170522',to_date('22/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170523',to_date('23/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170524',to_date('24/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170525',to_date('25/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170526',to_date('26/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170527',to_date('27/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170528',to_date('28/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170529',to_date('29/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170530',to_date('30/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170531',to_date('31/05/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170601',to_date('01/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170602',to_date('02/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170603',to_date('03/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170604',to_date('04/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170605',to_date('05/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170606',to_date('06/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170607',to_date('07/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170608',to_date('08/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170609',to_date('09/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170610',to_date('10/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170611',to_date('11/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170612',to_date('12/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170613',to_date('13/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170614',to_date('14/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170615',to_date('15/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170616',to_date('16/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170617',to_date('17/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170618',to_date('18/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170619',to_date('19/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170620',to_date('20/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170621',to_date('21/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170622',to_date('22/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170623',to_date('23/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170624',to_date('24/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170625',to_date('25/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170626',to_date('26/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170627',to_date('27/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170628',to_date('28/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170629',to_date('29/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170630',to_date('30/06/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170701',to_date('01/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170702',to_date('02/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170703',to_date('03/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170704',to_date('04/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170705',to_date('05/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170706',to_date('06/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170707',to_date('07/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170708',to_date('08/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170709',to_date('09/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170710',to_date('10/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170711',to_date('11/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170712',to_date('12/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170713',to_date('13/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170714',to_date('14/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170715',to_date('15/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170716',to_date('16/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170717',to_date('17/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170718',to_date('18/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170719',to_date('19/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170720',to_date('20/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170721',to_date('21/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170722',to_date('22/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170723',to_date('23/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170724',to_date('24/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170725',to_date('25/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170726',to_date('26/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170727',to_date('27/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170728',to_date('28/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170729',to_date('29/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170730',to_date('30/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170731',to_date('31/07/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170801',to_date('01/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170802',to_date('02/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170803',to_date('03/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170804',to_date('04/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170805',to_date('05/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170806',to_date('06/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170807',to_date('07/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170808',to_date('08/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170809',to_date('09/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170810',to_date('10/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170811',to_date('11/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170812',to_date('12/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170813',to_date('13/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170814',to_date('14/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170815',to_date('15/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170816',to_date('16/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170817',to_date('17/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170818',to_date('18/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170819',to_date('19/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170820',to_date('20/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170821',to_date('21/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170822',to_date('22/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170823',to_date('23/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170824',to_date('24/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170825',to_date('25/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170826',to_date('26/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170827',to_date('27/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170828',to_date('28/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170829',to_date('29/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170830',to_date('30/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170831',to_date('31/08/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170901',to_date('01/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170902',to_date('02/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170903',to_date('03/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170904',to_date('04/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170905',to_date('05/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170906',to_date('06/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170907',to_date('07/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170908',to_date('08/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170909',to_date('09/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170910',to_date('10/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170911',to_date('11/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170912',to_date('12/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170913',to_date('13/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170914',to_date('14/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170915',to_date('15/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170916',to_date('16/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170917',to_date('17/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170918',to_date('18/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170919',to_date('19/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170920',to_date('20/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170921',to_date('21/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170922',to_date('22/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170923',to_date('23/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170924',to_date('24/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170925',to_date('25/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170926',to_date('26/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170927',to_date('27/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170928',to_date('28/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170929',to_date('29/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20170930',to_date('30/09/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171001',to_date('01/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171002',to_date('02/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171003',to_date('03/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171004',to_date('04/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171005',to_date('05/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171006',to_date('06/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171007',to_date('07/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171008',to_date('08/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171009',to_date('09/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171010',to_date('10/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171011',to_date('11/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171012',to_date('12/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171013',to_date('13/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171014',to_date('14/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171015',to_date('15/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171016',to_date('16/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171017',to_date('17/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171018',to_date('18/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171019',to_date('19/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171020',to_date('20/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171021',to_date('21/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171022',to_date('22/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171023',to_date('23/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171024',to_date('24/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171025',to_date('25/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171026',to_date('26/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171027',to_date('27/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171028',to_date('28/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171029',to_date('29/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171030',to_date('30/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171031',to_date('31/10/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171101',to_date('01/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171102',to_date('02/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171103',to_date('03/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171104',to_date('04/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171105',to_date('05/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171106',to_date('06/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171107',to_date('07/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171108',to_date('08/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171109',to_date('09/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171110',to_date('10/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171111',to_date('11/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171112',to_date('12/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171113',to_date('13/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171114',to_date('14/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171115',to_date('15/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171116',to_date('16/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171117',to_date('17/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171118',to_date('18/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171119',to_date('19/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171120',to_date('20/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171121',to_date('21/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171122',to_date('22/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171123',to_date('23/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171124',to_date('24/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171125',to_date('25/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171126',to_date('26/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171127',to_date('27/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171128',to_date('28/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171129',to_date('29/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171130',to_date('30/11/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171201',to_date('01/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171202',to_date('02/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171203',to_date('03/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171204',to_date('04/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171205',to_date('05/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171206',to_date('06/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171207',to_date('07/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171208',to_date('08/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171209',to_date('09/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171210',to_date('10/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171211',to_date('11/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171212',to_date('12/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171213',to_date('13/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171214',to_date('14/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171215',to_date('15/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171216',to_date('16/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171217',to_date('17/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171218',to_date('18/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171219',to_date('19/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171220',to_date('20/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171221',to_date('21/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171222',to_date('22/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171223',to_date('23/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171224',to_date('24/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171225',to_date('25/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171226',to_date('26/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171227',to_date('27/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171228',to_date('28/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171229',to_date('29/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171230',to_date('30/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20171231',to_date('31/12/17','DD/MM/RR'),'2017');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180101',to_date('01/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180102',to_date('02/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180103',to_date('03/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180104',to_date('04/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180105',to_date('05/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180106',to_date('06/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180107',to_date('07/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180108',to_date('08/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180109',to_date('09/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180110',to_date('10/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180111',to_date('11/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180112',to_date('12/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180113',to_date('13/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180114',to_date('14/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180115',to_date('15/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180116',to_date('16/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180117',to_date('17/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180118',to_date('18/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180119',to_date('19/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180120',to_date('20/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180121',to_date('21/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180122',to_date('22/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180123',to_date('23/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180124',to_date('24/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180125',to_date('25/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180126',to_date('26/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180127',to_date('27/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180128',to_date('28/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180129',to_date('29/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180130',to_date('30/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180131',to_date('31/01/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180201',to_date('01/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180202',to_date('02/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180203',to_date('03/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180204',to_date('04/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180205',to_date('05/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180206',to_date('06/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180207',to_date('07/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180208',to_date('08/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180209',to_date('09/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180210',to_date('10/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180211',to_date('11/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180212',to_date('12/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180213',to_date('13/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180214',to_date('14/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180215',to_date('15/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180216',to_date('16/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180217',to_date('17/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180218',to_date('18/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180219',to_date('19/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180220',to_date('20/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180221',to_date('21/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180222',to_date('22/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180223',to_date('23/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180224',to_date('24/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180225',to_date('25/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180226',to_date('26/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180227',to_date('27/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180228',to_date('28/02/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180301',to_date('01/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180302',to_date('02/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180303',to_date('03/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180304',to_date('04/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180305',to_date('05/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180306',to_date('06/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180307',to_date('07/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180308',to_date('08/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180309',to_date('09/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180310',to_date('10/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180311',to_date('11/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180312',to_date('12/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180313',to_date('13/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180314',to_date('14/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180315',to_date('15/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180316',to_date('16/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180317',to_date('17/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180318',to_date('18/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180319',to_date('19/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180320',to_date('20/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180321',to_date('21/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180322',to_date('22/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180323',to_date('23/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180324',to_date('24/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180325',to_date('25/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180326',to_date('26/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180327',to_date('27/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180328',to_date('28/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180329',to_date('29/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180330',to_date('30/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180331',to_date('31/03/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180401',to_date('01/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180402',to_date('02/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180403',to_date('03/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180404',to_date('04/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180405',to_date('05/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180406',to_date('06/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180407',to_date('07/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180408',to_date('08/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180409',to_date('09/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180410',to_date('10/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180411',to_date('11/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180412',to_date('12/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180413',to_date('13/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180414',to_date('14/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180415',to_date('15/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180416',to_date('16/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180417',to_date('17/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180418',to_date('18/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180419',to_date('19/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180420',to_date('20/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180421',to_date('21/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180422',to_date('22/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180423',to_date('23/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180424',to_date('24/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180425',to_date('25/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180426',to_date('26/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180427',to_date('27/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180428',to_date('28/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180429',to_date('29/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180430',to_date('30/04/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180501',to_date('01/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180502',to_date('02/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180503',to_date('03/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180504',to_date('04/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180505',to_date('05/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180506',to_date('06/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180507',to_date('07/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180508',to_date('08/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180509',to_date('09/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180510',to_date('10/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180511',to_date('11/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180512',to_date('12/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180513',to_date('13/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180514',to_date('14/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180515',to_date('15/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180516',to_date('16/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180517',to_date('17/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180518',to_date('18/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180519',to_date('19/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180520',to_date('20/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180521',to_date('21/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180522',to_date('22/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180523',to_date('23/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180524',to_date('24/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180525',to_date('25/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180526',to_date('26/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180527',to_date('27/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180528',to_date('28/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180529',to_date('29/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180530',to_date('30/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180531',to_date('31/05/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180601',to_date('01/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180602',to_date('02/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180603',to_date('03/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180604',to_date('04/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180605',to_date('05/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180606',to_date('06/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180607',to_date('07/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180608',to_date('08/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180609',to_date('09/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180610',to_date('10/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180611',to_date('11/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180612',to_date('12/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180613',to_date('13/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180614',to_date('14/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180615',to_date('15/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180616',to_date('16/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180617',to_date('17/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180618',to_date('18/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180619',to_date('19/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180620',to_date('20/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180621',to_date('21/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180622',to_date('22/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180623',to_date('23/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180624',to_date('24/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180625',to_date('25/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180626',to_date('26/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180627',to_date('27/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180628',to_date('28/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180629',to_date('29/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180630',to_date('30/06/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180701',to_date('01/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180702',to_date('02/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180703',to_date('03/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180704',to_date('04/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180705',to_date('05/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180706',to_date('06/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180707',to_date('07/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180708',to_date('08/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180709',to_date('09/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180710',to_date('10/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180711',to_date('11/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180712',to_date('12/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180713',to_date('13/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180714',to_date('14/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180715',to_date('15/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180716',to_date('16/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180717',to_date('17/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180718',to_date('18/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180719',to_date('19/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180720',to_date('20/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180721',to_date('21/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180722',to_date('22/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180723',to_date('23/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180724',to_date('24/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180725',to_date('25/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180726',to_date('26/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180727',to_date('27/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180728',to_date('28/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180729',to_date('29/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180730',to_date('30/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180731',to_date('31/07/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180801',to_date('01/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180802',to_date('02/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180803',to_date('03/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180804',to_date('04/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180805',to_date('05/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180806',to_date('06/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180807',to_date('07/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180808',to_date('08/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180809',to_date('09/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180810',to_date('10/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180811',to_date('11/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180812',to_date('12/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180813',to_date('13/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180814',to_date('14/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180815',to_date('15/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180816',to_date('16/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180817',to_date('17/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180818',to_date('18/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180819',to_date('19/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180820',to_date('20/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180821',to_date('21/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180822',to_date('22/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180823',to_date('23/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180824',to_date('24/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180825',to_date('25/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180826',to_date('26/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180827',to_date('27/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180828',to_date('28/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180829',to_date('29/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180830',to_date('30/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180831',to_date('31/08/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180901',to_date('01/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180902',to_date('02/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180903',to_date('03/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180904',to_date('04/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180905',to_date('05/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180906',to_date('06/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180907',to_date('07/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180908',to_date('08/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180909',to_date('09/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180910',to_date('10/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180911',to_date('11/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180912',to_date('12/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180913',to_date('13/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180914',to_date('14/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180915',to_date('15/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180916',to_date('16/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180917',to_date('17/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180918',to_date('18/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180919',to_date('19/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180920',to_date('20/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180921',to_date('21/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180922',to_date('22/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180923',to_date('23/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180924',to_date('24/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180925',to_date('25/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180926',to_date('26/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180927',to_date('27/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180928',to_date('28/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180929',to_date('29/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20180930',to_date('30/09/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181001',to_date('01/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181002',to_date('02/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181003',to_date('03/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181004',to_date('04/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181005',to_date('05/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181006',to_date('06/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181007',to_date('07/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181008',to_date('08/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181009',to_date('09/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181010',to_date('10/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181011',to_date('11/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181012',to_date('12/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181013',to_date('13/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181014',to_date('14/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181015',to_date('15/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181016',to_date('16/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181017',to_date('17/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181018',to_date('18/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181019',to_date('19/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181020',to_date('20/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181021',to_date('21/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181022',to_date('22/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181023',to_date('23/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181024',to_date('24/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181025',to_date('25/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181026',to_date('26/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181027',to_date('27/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181028',to_date('28/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181029',to_date('29/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181030',to_date('30/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181031',to_date('31/10/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181101',to_date('01/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181102',to_date('02/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181103',to_date('03/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181104',to_date('04/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181105',to_date('05/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181106',to_date('06/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181107',to_date('07/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181108',to_date('08/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181109',to_date('09/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181110',to_date('10/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181111',to_date('11/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181112',to_date('12/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181113',to_date('13/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181114',to_date('14/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181115',to_date('15/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181116',to_date('16/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181117',to_date('17/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181118',to_date('18/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181119',to_date('19/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181120',to_date('20/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181121',to_date('21/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181122',to_date('22/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181123',to_date('23/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181124',to_date('24/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181125',to_date('25/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181126',to_date('26/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181127',to_date('27/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181128',to_date('28/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181129',to_date('29/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181130',to_date('30/11/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181201',to_date('01/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181202',to_date('02/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181203',to_date('03/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181204',to_date('04/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181205',to_date('05/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181206',to_date('06/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181207',to_date('07/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181208',to_date('08/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181209',to_date('09/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181210',to_date('10/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181211',to_date('11/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181212',to_date('12/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181213',to_date('13/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181214',to_date('14/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181215',to_date('15/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181216',to_date('16/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181217',to_date('17/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181218',to_date('18/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181219',to_date('19/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181220',to_date('20/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181221',to_date('21/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181222',to_date('22/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181223',to_date('23/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181224',to_date('24/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181225',to_date('25/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181226',to_date('26/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181227',to_date('27/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181228',to_date('28/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181229',to_date('29/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181230',to_date('30/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20181231',to_date('31/12/18','DD/MM/RR'),'2018');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190101',to_date('01/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190102',to_date('02/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190103',to_date('03/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190104',to_date('04/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190105',to_date('05/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190106',to_date('06/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190107',to_date('07/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190108',to_date('08/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190109',to_date('09/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190110',to_date('10/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190111',to_date('11/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190112',to_date('12/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190113',to_date('13/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190114',to_date('14/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190115',to_date('15/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190116',to_date('16/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190117',to_date('17/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190118',to_date('18/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190119',to_date('19/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190120',to_date('20/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190121',to_date('21/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190122',to_date('22/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190123',to_date('23/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190124',to_date('24/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190125',to_date('25/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190126',to_date('26/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190127',to_date('27/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190128',to_date('28/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190129',to_date('29/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190130',to_date('30/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190131',to_date('31/01/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190201',to_date('01/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190202',to_date('02/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190203',to_date('03/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190204',to_date('04/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190205',to_date('05/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190206',to_date('06/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190207',to_date('07/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190208',to_date('08/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190209',to_date('09/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190210',to_date('10/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190211',to_date('11/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190212',to_date('12/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190213',to_date('13/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190214',to_date('14/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190215',to_date('15/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190216',to_date('16/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190217',to_date('17/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190218',to_date('18/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190219',to_date('19/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190220',to_date('20/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190221',to_date('21/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190222',to_date('22/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190223',to_date('23/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190224',to_date('24/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190225',to_date('25/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190226',to_date('26/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190227',to_date('27/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190228',to_date('28/02/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190301',to_date('01/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190302',to_date('02/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190303',to_date('03/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190304',to_date('04/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190305',to_date('05/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190306',to_date('06/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190307',to_date('07/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190308',to_date('08/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190309',to_date('09/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190310',to_date('10/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190311',to_date('11/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190312',to_date('12/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190313',to_date('13/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190314',to_date('14/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190315',to_date('15/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190316',to_date('16/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190317',to_date('17/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190318',to_date('18/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190319',to_date('19/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190320',to_date('20/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190321',to_date('21/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190322',to_date('22/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190323',to_date('23/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190324',to_date('24/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190325',to_date('25/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190326',to_date('26/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190327',to_date('27/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190328',to_date('28/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190329',to_date('29/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190330',to_date('30/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190331',to_date('31/03/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190401',to_date('01/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190402',to_date('02/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190403',to_date('03/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190404',to_date('04/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190405',to_date('05/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190406',to_date('06/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190407',to_date('07/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190408',to_date('08/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190409',to_date('09/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190410',to_date('10/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190411',to_date('11/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190412',to_date('12/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190413',to_date('13/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190414',to_date('14/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190415',to_date('15/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190416',to_date('16/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190417',to_date('17/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190418',to_date('18/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190419',to_date('19/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190420',to_date('20/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190421',to_date('21/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190422',to_date('22/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190423',to_date('23/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190424',to_date('24/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190425',to_date('25/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190426',to_date('26/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190427',to_date('27/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190428',to_date('28/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190429',to_date('29/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190430',to_date('30/04/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190501',to_date('01/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190502',to_date('02/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190503',to_date('03/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190504',to_date('04/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190505',to_date('05/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190506',to_date('06/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190507',to_date('07/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190508',to_date('08/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190509',to_date('09/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190510',to_date('10/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190511',to_date('11/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190512',to_date('12/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190513',to_date('13/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190514',to_date('14/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190515',to_date('15/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190516',to_date('16/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190517',to_date('17/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190518',to_date('18/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190519',to_date('19/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190520',to_date('20/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190521',to_date('21/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190522',to_date('22/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190523',to_date('23/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190524',to_date('24/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190525',to_date('25/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190526',to_date('26/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190527',to_date('27/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190528',to_date('28/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190529',to_date('29/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190530',to_date('30/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190531',to_date('31/05/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190601',to_date('01/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190602',to_date('02/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190603',to_date('03/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190604',to_date('04/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190605',to_date('05/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190606',to_date('06/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190607',to_date('07/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190608',to_date('08/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190609',to_date('09/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190610',to_date('10/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190611',to_date('11/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190612',to_date('12/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190613',to_date('13/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190614',to_date('14/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190615',to_date('15/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190616',to_date('16/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190617',to_date('17/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190618',to_date('18/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190619',to_date('19/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190620',to_date('20/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190621',to_date('21/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190622',to_date('22/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190623',to_date('23/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190624',to_date('24/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190625',to_date('25/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190626',to_date('26/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190627',to_date('27/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190628',to_date('28/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190629',to_date('29/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190630',to_date('30/06/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190701',to_date('01/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190702',to_date('02/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190703',to_date('03/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190704',to_date('04/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190705',to_date('05/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190706',to_date('06/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190707',to_date('07/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190708',to_date('08/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190709',to_date('09/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190710',to_date('10/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190711',to_date('11/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190712',to_date('12/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190713',to_date('13/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190714',to_date('14/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190715',to_date('15/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190716',to_date('16/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190717',to_date('17/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190718',to_date('18/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190719',to_date('19/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190720',to_date('20/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190721',to_date('21/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190722',to_date('22/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190723',to_date('23/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190724',to_date('24/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190725',to_date('25/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190726',to_date('26/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190727',to_date('27/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190728',to_date('28/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190729',to_date('29/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190730',to_date('30/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190731',to_date('31/07/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190801',to_date('01/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190802',to_date('02/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190803',to_date('03/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190804',to_date('04/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190805',to_date('05/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190806',to_date('06/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190807',to_date('07/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190808',to_date('08/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190809',to_date('09/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190810',to_date('10/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190811',to_date('11/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190812',to_date('12/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190813',to_date('13/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190814',to_date('14/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190815',to_date('15/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190816',to_date('16/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190817',to_date('17/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190818',to_date('18/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190819',to_date('19/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190820',to_date('20/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190821',to_date('21/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190822',to_date('22/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190823',to_date('23/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190824',to_date('24/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190825',to_date('25/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190826',to_date('26/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190827',to_date('27/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190828',to_date('28/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190829',to_date('29/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190830',to_date('30/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190831',to_date('31/08/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190901',to_date('01/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190902',to_date('02/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190903',to_date('03/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190904',to_date('04/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190905',to_date('05/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190906',to_date('06/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190907',to_date('07/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190908',to_date('08/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190909',to_date('09/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190910',to_date('10/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190911',to_date('11/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190912',to_date('12/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190913',to_date('13/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190914',to_date('14/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190915',to_date('15/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190916',to_date('16/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190917',to_date('17/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190918',to_date('18/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190919',to_date('19/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190920',to_date('20/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190921',to_date('21/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190922',to_date('22/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190923',to_date('23/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190924',to_date('24/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190925',to_date('25/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190926',to_date('26/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190927',to_date('27/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190928',to_date('28/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190929',to_date('29/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20190930',to_date('30/09/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191001',to_date('01/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191002',to_date('02/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191003',to_date('03/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191004',to_date('04/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191005',to_date('05/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191006',to_date('06/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191007',to_date('07/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191008',to_date('08/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191009',to_date('09/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191010',to_date('10/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191011',to_date('11/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191012',to_date('12/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191013',to_date('13/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191014',to_date('14/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191015',to_date('15/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191016',to_date('16/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191017',to_date('17/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191018',to_date('18/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191019',to_date('19/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191020',to_date('20/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191021',to_date('21/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191022',to_date('22/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191023',to_date('23/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191024',to_date('24/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191025',to_date('25/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191026',to_date('26/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191027',to_date('27/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191028',to_date('28/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191029',to_date('29/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191030',to_date('30/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191031',to_date('31/10/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191101',to_date('01/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191102',to_date('02/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191103',to_date('03/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191104',to_date('04/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191105',to_date('05/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191106',to_date('06/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191107',to_date('07/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191108',to_date('08/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191109',to_date('09/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191110',to_date('10/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191111',to_date('11/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191112',to_date('12/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191113',to_date('13/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191114',to_date('14/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191115',to_date('15/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191116',to_date('16/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191117',to_date('17/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191118',to_date('18/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191119',to_date('19/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191120',to_date('20/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191121',to_date('21/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191122',to_date('22/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191123',to_date('23/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191124',to_date('24/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191125',to_date('25/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191126',to_date('26/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191127',to_date('27/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191128',to_date('28/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191129',to_date('29/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191130',to_date('30/11/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191201',to_date('01/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191202',to_date('02/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191203',to_date('03/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191204',to_date('04/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191205',to_date('05/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191206',to_date('06/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191207',to_date('07/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191208',to_date('08/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191209',to_date('09/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191210',to_date('10/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191211',to_date('11/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191212',to_date('12/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191213',to_date('13/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191214',to_date('14/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191215',to_date('15/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191216',to_date('16/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191217',to_date('17/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191218',to_date('18/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191219',to_date('19/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191220',to_date('20/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191221',to_date('21/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191222',to_date('22/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191223',to_date('23/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191224',to_date('24/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191225',to_date('25/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191226',to_date('26/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191227',to_date('27/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191228',to_date('28/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191229',to_date('29/12/19','DD/MM/RR'),'2019');
+Insert into CO_GNC.DT_TIEMPO (SK_TIEMPO,FECHA,ANIO) values ('20191230',to_date('30/12/19','DD/MM/RR'),'2019');
+REM INSERTING into CO_GNC.H_TERN_ENF
+SET DEFINE OFF;
+Insert into CO_GNC.H_TERN_ENF (TERNERA,ENFERMEDAD,FECH_DESDE,FECH_HASTA) values ('1000000001','Neumonia',to_date('02/11/17','DD/MM/RR'),to_date('03/11/17','DD/MM/RR'));
+Insert into CO_GNC.H_TERN_ENF (TERNERA,ENFERMEDAD,FECH_DESDE,FECH_HASTA) values ('2000000006','Diarrea',to_date('02/11/17','DD/MM/RR'),null);
+REM INSERTING into CO_GNC.HT_TERN_ENF
+SET DEFINE OFF;
+Insert into CO_GNC.HT_TERN_ENF (SK_ENFERMEDAD,SK_TERNERA,SK_TIEMPO,CANTIDAD,ALTA_USUARIO,ALTER_FECHA) values ('1','1','20171102','1','CO_GNC',to_date('28/11/18','DD/MM/RR'));
+Insert into CO_GNC.HT_TERN_ENF (SK_ENFERMEDAD,SK_TERNERA,SK_TIEMPO,CANTIDAD,ALTA_USUARIO,ALTER_FECHA) values ('2','2','20171102','1','CO_GNC',to_date('28/11/18','DD/MM/RR'));
+REM INSERTING into CO_GNC.ODS_D_ENFERMEDAD
+SET DEFINE OFF;
+Insert into CO_GNC.ODS_D_ENFERMEDAD (ENFERMEDAD_PK) values ('DIARREA');
+Insert into CO_GNC.ODS_D_ENFERMEDAD (ENFERMEDAD_PK) values ('NEUMONIA');
+REM INSERTING into CO_GNC.ODS_D_TERNERA
+SET DEFINE OFF;
+Insert into CO_GNC.ODS_D_TERNERA (TERNERA_PK,DESC_TERNERA) values ('2000000006','Nro de carabana');
+Insert into CO_GNC.ODS_D_TERNERA (TERNERA_PK,DESC_TERNERA) values ('1000000001','Nro de carabana');
+REM INSERTING into CO_GNC.ODS_H_TERN_ENF
+SET DEFINE OFF;
+Insert into CO_GNC.ODS_H_TERN_ENF (TERNERA,ENFERMEDAD,FECHA_DESDE,FECHA_HASTA) values ('1000000001','NEUMONIA','20171102','20171103');
+Insert into CO_GNC.ODS_H_TERN_ENF (TERNERA,ENFERMEDAD,FECHA_DESDE,FECHA_HASTA) values ('2000000006','DIARREA','20171102',null);
+REM INSERTING into CO_GNC.V_CONTROL_D_ENFERMEDAD
+SET DEFINE OFF;
+REM INSERTING into CO_GNC.V_CONTROL_D_TERNERA
+SET DEFINE OFF;
+Insert into CO_GNC.V_CONTROL_D_TERNERA (TERNERA) values ('1000000001');
+Insert into CO_GNC.V_CONTROL_D_TERNERA (TERNERA) values ('2000000006');
+--------------------------------------------------------
+--  DDL for Index DT_ENFERMEDAD_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CO_GNC"."DT_ENFERMEDAD_PK" ON "CO_GNC"."DT_ENFERMEDAD" ("SK_ENFERMEDAD") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index DT_SKTERNERA_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CO_GNC"."DT_SKTERNERA_PK" ON "CO_GNC"."DT_TERNERA" ("SK_TERNERA") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index DT_SKTIEMPO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CO_GNC"."DT_SKTIEMPO_PK" ON "CO_GNC"."DT_TIEMPO" ("SK_TIEMPO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index HT_TERN_ENF_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CO_GNC"."HT_TERN_ENF_PK" ON "CO_GNC"."HT_TERN_ENF" ("SK_ENFERMEDAD", "SK_TERNERA", "SK_TIEMPO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index SYS_C005677
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CO_GNC"."SYS_C005677" ON "CO_GNC"."ODS_D_ENFERMEDAD" ("ENFERMEDAD_PK") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  Constraints for Table DT_ENFERMEDAD
+--------------------------------------------------------
+
+  ALTER TABLE "CO_GNC"."DT_ENFERMEDAD" ADD CONSTRAINT "DT_ENFERMEDADSK_PK" PRIMARY KEY ("SK_ENFERMEDAD")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+ 
+  ALTER TABLE "CO_GNC"."DT_ENFERMEDAD" MODIFY ("SK_ENFERMEDAD" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table DT_TERNERA
+--------------------------------------------------------
+
+  ALTER TABLE "CO_GNC"."DT_TERNERA" ADD CONSTRAINT "DT_SKTERNERA_PK" PRIMARY KEY ("SK_TERNERA")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+ 
+  ALTER TABLE "CO_GNC"."DT_TERNERA" MODIFY ("SK_TERNERA" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."DT_TERNERA" MODIFY ("PK_TERNERA" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."DT_TERNERA" MODIFY ("DES_TER" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table DT_TIEMPO
+--------------------------------------------------------
+
+  ALTER TABLE "CO_GNC"."DT_TIEMPO" ADD CONSTRAINT "DT_SKTIEMPO_PK" PRIMARY KEY ("SK_TIEMPO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+ 
+  ALTER TABLE "CO_GNC"."DT_TIEMPO" MODIFY ("SK_TIEMPO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."DT_TIEMPO" MODIFY ("FECHA" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."DT_TIEMPO" MODIFY ("ANIO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table HT_TERN_ENF
+--------------------------------------------------------
+
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" ADD CONSTRAINT "HT_TERN_ENF_PK" PRIMARY KEY ("SK_ENFERMEDAD", "SK_TERNERA", "SK_TIEMPO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+ 
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" MODIFY ("SK_ENFERMEDAD" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" MODIFY ("SK_TERNERA" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" MODIFY ("SK_TIEMPO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" MODIFY ("CANTIDAD" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table ODS_D_ENFERMEDAD
+--------------------------------------------------------
+
+  ALTER TABLE "CO_GNC"."ODS_D_ENFERMEDAD" ADD UNIQUE ("ENFERMEDAD_PK")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table HT_TERN_ENF
+--------------------------------------------------------
+
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" ADD CONSTRAINT "HT_TERN_ENF_DTENF_FK1" FOREIGN KEY ("SK_ENFERMEDAD")
+	  REFERENCES "CO_GNC"."DT_ENFERMEDAD" ("SK_ENFERMEDAD") ENABLE;
+ 
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" ADD CONSTRAINT "HT_TERN_ENF_DTTERN_FK1" FOREIGN KEY ("SK_TERNERA")
+	  REFERENCES "CO_GNC"."DT_TERNERA" ("SK_TERNERA") ENABLE;
+ 
+  ALTER TABLE "CO_GNC"."HT_TERN_ENF" ADD CONSTRAINT "HT_TERN_ENF_DTTIEMPO_FK1" FOREIGN KEY ("SK_TIEMPO")
+	  REFERENCES "CO_GNC"."DT_TIEMPO" ("SK_TIEMPO") ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger T_AUD_HT_TERN_ENF
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "CO_GNC"."T_AUD_HT_TERN_ENF" 
+BEFORE INSERT OR UPDATE
+ON HT_TERN_ENF
+FOR EACH ROW
+BEGIN
+SELECT USER,
+	               SYSDATE
+	INTO      :NEW.ALTA_USUARIO,
+	               :NEW.ALTER_FECHA
+	FROM    DUAL;
+END T_AUD_HT_TERN_ENF;
+/
+ALTER TRIGGER "CO_GNC"."T_AUD_HT_TERN_ENF" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger T_ENFERMEDAD_SEQ
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "CO_GNC"."T_ENFERMEDAD_SEQ" 
+BEFORE INSERT
+ON DT_ENFERMEDAD
+FOR EACH ROW
+BEGIN
+SELECT SEQ_ENFERMEDAD.NEXTVAL
+INTO :NEW.SK_ENFERMEDAD
+FROM DUAL;
+END T_ENFERMEDAD_SEQ;
+/
+ALTER TRIGGER "CO_GNC"."T_ENFERMEDAD_SEQ" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger T_TERNERA_SEQ
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "CO_GNC"."T_TERNERA_SEQ" 
+BEFORE INSERT
+ON DT_TERNERA
+FOR EACH ROW
+BEGIN
+SELECT SEQ_TERNERA.NEXTVAL
+INTO :NEW.SK_TERNERA
+FROM DUAL;
+END T_TERNERA_SEQ;
+/
+ALTER TRIGGER "CO_GNC"."T_TERNERA_SEQ" ENABLE;
+--------------------------------------------------------
+--  DDL for Procedure P_DWH_DT_ENFERMEDAD
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_DWH_DT_ENFERMEDAD" 
+IS
+BEGIN
+MERGE INTO DT_ENFERMEDAD a
+USING (SELECT ENFERMEDAD_PK FROM ODS_D_ENFERMEDAD) o
+ON (a.PK_ENFERMEDAD = o.ENFERMEDAD_PK)	
+WHEN NOT MATCHED THEN
+INSERT (PK_ENFERMEDAD)
+VALUES
+(o.ENFERMEDAD_PK)
+;
+COMMIT;
+END P_DWH_DT_ENFERMEDAD;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure P_DWH_DT_TERNERA
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_DWH_DT_TERNERA" 
+IS
+BEGIN
+MERGE INTO DT_TERNERA a
+USING (SELECT TERNERA_PK,DESC_TERNERA FROM ODS_D_TERNERA) o
+ON (a.PK_TERNERA = o.TERNERA_PK)	
+WHEN NOT MATCHED THEN
+INSERT (PK_TERNERA, DES_TER)
+VALUES
+(o.TERNERA_PK, o.DESC_TERNERA)
+;
+COMMIT;
+END P_DWH_DT_TERNERA;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure P_DWT_DT_TIEMPO
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_DWT_DT_TIEMPO" 
+is
+FECHA_DESDE DATE;
+FECHA_HASTA DATE;
+BEGIN
+FECHA_DESDE :=TO_DATE('20160101','YYYYMMDD');
+FECHA_HASTA :=TO_DATE('20191230','YYYYMMDD');
+WHILE FECHA_DESDE <= FECHA_HASTA
+LOOP
+INSERT INTO DT_TIEMPO
+(SK_TIEMPO,FECHA,ANIO)
+VALUES
+(
+TO_CHAR(FECHA_DESDE,'YYYYMMDD'),
+FECHA_DESDE,
+TO_CHAR(FECHA_DESDE,'YYYY')
+);
+FECHA_DESDE:=FECHA_DESDE+1;
+END LOOP;
+COMMIT ;
+END P_DWT_DT_TIEMPO;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure P_HT_TERN_ENF
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_HT_TERN_ENF" 
+IS 
+BEGIN
+INSERT INTO HT_TERN_ENF
+(SK_ENFERMEDAD,SK_TERNERA,
+SK_TIEMPO,CANTIDAD
+)
+SELECT DT_ENFERMEDAD.SK_ENFERMEDAD,
+DT_TERNERA.SK_TERNERA,
+DT_TIEMPO.SK_TIEMPO,
+1 CANTIDAD
+FROM ODS_H_TERN_ENF
+LEFT OUTER JOIN DT_ENFERMEDAD
+ON DT_ENFERMEDAD.PK_ENFERMEDAD=ODS_H_TERN_ENF.ENFERMEDAD
+LEFT OUTER JOIN DT_TERNERA
+ON DT_TERNERA.PK_TERNERA=ODS_H_TERN_ENF.TERNERA
+LEFT OUTER JOIN DT_TIEMPO
+ON DT_TIEMPO.SK_TIEMPO=ODS_H_TERN_ENF.FECHA_DESDE;
+COMMIT;
+END P_HT_TERN_ENF;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure P_ODS_D_ENFEREDAD
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_ODS_D_ENFEREDAD" 
+ 	IS
+ 	BEGIN
+ 	DELETE FROM ODS_D_ENFERMEDAD;
+ 	INSERT INTO ODS_D_ENFERMEDAD
+  SELECT 
+  CASE 
+    WHEN UPPER(TRIM(ENFERMEDAD))='NEUMONIA' THEN 'NEUMONÍA'
+    WHEN UPPER(TRIM(ENFERMEDAD))='DIAREA' THEN 'DIARREA'
+    ELSE UPPER(TRIM(ENFERMEDAD))
+    END ENFERMEDAD
+ 	FROM D_ENFERMEDAD
+ 	;
+ 	COMMIT;
+ END P_ODS_D_ENFEREDAD;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure P_ODS_D_TERNERA
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_ODS_D_TERNERA" 
+ 	IS
+ 	BEGIN
+ 	DELETE FROM ODS_D_TERNERA;
+ 	INSERT INTO ODS_D_TERNERA
+ 	( 
+ 	TERNERA_PK,
+  DESC_TERNERA
+  	)
+ 	SELECT UPPER(TRIM(TERNERA)),
+  DESCRIPCION
+ 	FROM D_TERNERA
+ 	;
+ 	COMMIT;
+  END P_ODS_D_TERNERA;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure P_ODS_H_TERN_ENF
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "CO_GNC"."P_ODS_H_TERN_ENF" 
+ 	IS
+ 	BEGIN
+ 	DELETE FROM ODS_H_TERN_ENF;
+ 	INSERT INTO ODS_H_TERN_ENF
+ 	SELECT UPPER(TRIM(TERNERA)),
+  case
+   WHEN UPPER(TRIM(ENFERMEDAD))='NEUMONIA' THEN 'NEUMOÍA'
+   WHEN UPPER(TRIM(ENFERMEDAD))='DIAREA' THEN 'DIARREA'
+   ELSE UPPER(TRIM(ENFERMEDAD))
+   END ENFERMEDAD,
+  to_number(TO_CHAR(FECH_DESDE,'YYYYMMDD')),
+  to_number(TO_CHAR(FECH_HASTA,'YYYYMMDD'))
+ 	FROM H_TERN_ENF
+ 	;
+ 	COMMIT;
+  END P_ODS_H_TERN_ENF;
+
+/
+--------------------------------------------------------
+--  DDL for Synonymn DUAL
+--------------------------------------------------------
+
+  CREATE OR REPLACE PUBLIC SYNONYM "DUAL" FOR "SYS"."DUAL";
